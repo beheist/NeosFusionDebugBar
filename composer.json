@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "beheist/fusiondebugbar",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beheist\\FusionDebugBar\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Beheist.FusionDebugBar"
+        }
+    }
+}

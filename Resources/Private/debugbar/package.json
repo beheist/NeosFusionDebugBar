@@ -1,0 +1,25 @@
+{
+    "name": "debugbar",
+    "version": "1.0.0",
+    "description": "Debug Bar for Neos Fusion",
+    "main": "src/index.js",
+    "author": "Bastian Heist",
+    "license": "MIT",
+    "dependencies": {
+        "react": "^16.4.1",
+        "react-redux": "^5.0.7",
+        "redux": "^4.0.0",
+        "webpack": "^4.16.2"
+    },
+    "scripts": {
+        "build": "webpack --progress --colors",
+        "watch": "webpack --progress --colors --watch"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "webpack-cli": "^3.1.0"
+    }
+}
