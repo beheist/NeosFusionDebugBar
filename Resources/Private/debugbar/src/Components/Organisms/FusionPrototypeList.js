@@ -10,9 +10,9 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
+        position: 'relative',
+        overflow: 'auto',
+        maxHeight: 500
     },
     nested: {
         paddingLeft: theme.spacing.unit * 4,
@@ -22,14 +22,14 @@ const styles = theme => ({
 class FusionPrototypeList extends React.PureComponent {
     static propTypes = {
         classes: PropTypes.object.isRequired,
-        items: PropTypes.object.isRequired,
+        prototypes: PropTypes.object.isRequired,
         onItemClick: PropTypes.func.isRequired
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            groupedPrototypes: this.groupPrototypes(props.items)
+            groupedPrototypes: this.groupPrototypes(props.prototypes)
         }
     }
 

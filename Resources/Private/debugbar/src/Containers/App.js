@@ -11,6 +11,10 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        height: 500,
+        position: "absolute",
+        bottom: 0,
+        width: "100vw"
     },
 });
 
@@ -34,9 +38,11 @@ class App extends React.PureComponent {
                 <AppBar position="static">
                     <Tabs value={this.state.value} onChange={this.handleChange}>
                         <Tab label="Fusion Prototypes"/>
+                        <Tab label="Fusion Paths"/>
                     </Tabs>
                 </AppBar>
                 {this.state.value === 0 && <FusionPrototypeView />}
+                {this.state.value === 1 && <FusionPrototypeView />}
             </div>
         );
     }
