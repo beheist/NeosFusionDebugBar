@@ -5,8 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-// import ExpandLess from '@material-ui/icons/ExpandLess';
-// import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     root: {
@@ -66,7 +66,7 @@ class FusionPrototypeList extends React.PureComponent {
                         <React.Fragment key={packageName}>
                             <ListItem button onClick={() => this.handleToggleClick(packageName)}>
                                 <ListItemText primary={packageName}/>
-                                {/*{this.state.groupedPrototypes[packageName].__isOpen ? <ExpandLess/> : <ExpandMore/>}*/}
+                                {this.state.groupedPrototypes[packageName].__isOpen ? <ExpandLess/> : <ExpandMore/>}
                             </ListItem>
                             <Collapse in={this.state.groupedPrototypes[packageName].__isOpen} timeout="auto"
                                       unmountOnExit>

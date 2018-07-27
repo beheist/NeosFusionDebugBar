@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import FusionPrototypeList from '../Components/Organisms/FusionPrototypeList'
 import TwoPartTabContainer from '../Components/Organisms/TwoPartTabContainer'
+import FusionPrototypeDetails from '../Components/Organisms/FusionPrototypeDetails'
 
 const mapStateToProps = state => ({
     prototypes: state.__prototypes
@@ -32,7 +33,7 @@ class FusionPrototypeView extends React.PureComponent {
             <TwoPartTabContainer
                 left={<FusionPrototypeList items={this.props.prototypes} onItemClick={this.handleItemClick}/>}
             >
-                <h1>{this.state.selectedPrototypeName}</h1>
+                <FusionPrototypeDetails prototypeName={this.state.selectedPrototypeName} prototype={this.state.selectedPrototype} />
             </TwoPartTabContainer>
         );
     }
