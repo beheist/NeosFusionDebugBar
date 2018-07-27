@@ -13,9 +13,10 @@ window.setTimeout(() => {
 
     const initialState = JSON.parse(document.getElementById("fusionConfig").getAttribute("data-fusionconfig"));
     store.dispatch(actions.Prototypes.setAll(initialState.__prototypes));
-    store.dispatch(actions.Prototypes.setCurrentPrototypeName(Object.keys(initialState.__prototypes)[0]));
+    store.dispatch(actions.Prototypes.initCurrentPrototypeName());
     delete initialState.__prototypes;
     store.dispatch(actions.FusionPaths.setAll(initialState));
+    store.dispatch(actions.FusionPaths.initCurrentFusionPathName());
 
     ReactDOM.render(
         <Provider store={store}>

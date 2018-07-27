@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import FusionPrototypeListContainer from './FusionPrototypeListContainer'
+import PrototypeListContainer from './PrototypeListContainer'
 import TwoPartTabContainer from '../Components/Organisms/TwoPartTabContainer'
-import FusionPrototypeDetails from '../Components/Organisms/FusionPrototypeDetails'
+import PrototypeDetails from '../Components/Organisms/PrototypeDetails'
 import {selectors} from "../Redux";
 
 const mapStateToProps = state => ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
     currentPrototype: selectors.Prototypes.currentPrototype(state)
 });
 
-class FusionPrototypeView extends React.PureComponent {
+class PrototypeView extends React.PureComponent {
     static propTypes = {
         // mapStateToProps
         currentPrototypeName: PropTypes.string.isRequired,
@@ -21,13 +21,13 @@ class FusionPrototypeView extends React.PureComponent {
     render() {
         return (
             <TwoPartTabContainer
-                left={<FusionPrototypeListContainer/>}
+                left={<PrototypeListContainer/>}
             >
-                <FusionPrototypeDetails prototypeName={this.props.currentPrototypeName}
+                <PrototypeDetails prototypeName={this.props.currentPrototypeName}
                                         prototype={this.props.currentPrototype}/>
             </TwoPartTabContainer>
         );
     }
 }
 
-export default connect(mapStateToProps)(FusionPrototypeView);
+export default connect(mapStateToProps)(PrototypeView);

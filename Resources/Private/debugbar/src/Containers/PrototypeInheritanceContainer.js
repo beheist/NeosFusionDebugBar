@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {actions} from "../Redux";
-import FusionPrototypeInheritance from '../Components/Atoms/FusionPrototypeInheritance'
+import PrototypeInheritance from '../Components/Atoms/PrototypeInheritance'
 
 const mapDispatchToProps = dispatch => ({
     setCurrentPrototypeName: prototypeName => dispatch(actions.Prototypes.setCurrentPrototypeName(prototypeName))
 });
 
-class FusionPrototypeInheritanceContainer extends React.PureComponent {
+class PrototypeInheritanceContainer extends React.PureComponent {
     static propTypes = {
         // mapDispatchToProps
         setCurrentPrototypeName: PropTypes.func.isRequired,
@@ -17,8 +17,8 @@ class FusionPrototypeInheritanceContainer extends React.PureComponent {
     };
 
     render() {
-        return <FusionPrototypeInheritance prototypeChain={this.props.prototypeChain} onItemClick={this.props.setCurrentPrototypeName} />
+        return <PrototypeInheritance prototypeChain={this.props.prototypeChain} onItemClick={this.props.setCurrentPrototypeName} />
     }
 }
 
-export default connect(null, mapDispatchToProps)(FusionPrototypeInheritanceContainer);
+export default connect(null, mapDispatchToProps)(PrototypeInheritanceContainer);

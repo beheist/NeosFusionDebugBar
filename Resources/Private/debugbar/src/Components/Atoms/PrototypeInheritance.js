@@ -16,7 +16,7 @@ const styles = theme => ({
     }
 });
 
-class FusionPrototypeInheritance extends React.PureComponent {
+class PrototypeInheritance extends React.PureComponent {
     static propTypes = {
         classes: PropTypes.object.isRequired,
         prototypeChain: PropTypes.array.isRequired,
@@ -38,4 +38,4 @@ class FusionPrototypeInheritance extends React.PureComponent {
     }
 }
 
-export default withStyles(styles)(FusionPrototypeInheritance);
+export default withStyles(styles)(PrototypeInheritance);

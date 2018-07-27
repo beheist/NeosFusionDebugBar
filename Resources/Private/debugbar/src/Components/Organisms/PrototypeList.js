@@ -7,19 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import styles from '../../SharedStyles/List';
 
-const styles = theme => ({
-    root: {
-        position: 'relative',
-        overflow: 'auto',
-        maxHeight: 500
-    },
-    nested: {
-        paddingLeft: theme.spacing.unit * 4,
-    },
-});
-
-class FusionPrototypeList extends React.PureComponent {
+class PrototypeList extends React.PureComponent {
     static propTypes = {
         classes: PropTypes.object.isRequired,
         prototypes: PropTypes.object.isRequired,
@@ -88,4 +78,4 @@ class FusionPrototypeList extends React.PureComponent {
     }
 }
 
-export default withStyles(styles)(FusionPrototypeList);
+export default withStyles(styles)(PrototypeList);

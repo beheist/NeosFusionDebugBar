@@ -2,26 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import FusionPrototypeInheritanceContainer from '../../Containers/FusionPrototypeInheritanceContainer'
+import PrototypeInheritanceContainer from '../../Containers/PrototypeInheritanceContainer'
 import Button from '@material-ui/core/Button';
+import styles from '../../SharedStyles/Details';
 
-const styles = theme => ({
-    root: {
-        paddingTop: theme.spacing.unit * 3.5,
-        paddingBottom: theme.spacing.unit * 2
-    },
-    details__header: {
-        position: "relative",
-        paddingBottom: theme.spacing.unit * 2
-    },
-    details__headerbutton: {
-        position: "absolute",
-        right: theme.spacing.unit * 3,
-        top: 0
-    }
-});
-
-class FusionPrototypeDetails extends React.PureComponent {
+class PrototypeDetails extends React.PureComponent {
     static propTypes = {
         // theme
         classes: PropTypes.object.isRequired,
@@ -53,8 +38,8 @@ class FusionPrototypeDetails extends React.PureComponent {
 
                 {this.props.prototype.__prototypeChain && this.props.prototype.__prototypeChain.length > 0 ?
                     <React.Fragment>
-                        <FusionPrototypeInheritanceContainer
-                            prototypeChain={this.props.prototype.__prototypeChain.reverse()}/>
+                        <PrototypeInheritanceContainer
+                            prototypeChain={this.props.prototype.__prototypeChain.slice().reverse()}/>
                     </React.Fragment> : null
                 }
                 {this.props.prototype.__meta ?
@@ -73,4 +58,4 @@ class FusionPrototypeDetails extends React.PureComponent {
     }
 }
 
-export default withStyles(styles)(FusionPrototypeDetails);
+export default withStyles(styles)(PrototypeDetails);

@@ -4,7 +4,8 @@ import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import FusionPrototypeView from './FusionPrototypeView';
+import PrototypeView from './PrototypeView';
+import FusionPathView from './FusionPathView';
 
 
 const styles = theme => ({
@@ -41,8 +42,8 @@ class App extends React.PureComponent {
                         <Tab label="Fusion Paths"/>
                     </Tabs>
                 </AppBar>
-                {this.state.value === 0 && <FusionPrototypeView />}
-                {this.state.value === 1 && <FusionPrototypeView />}
+                {this.state.value === 1 && <PrototypeView />}
+                {this.state.value === 0 && <FusionPathView />}
             </div>
         );
     }
