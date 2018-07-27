@@ -28,7 +28,7 @@ class PrototypeDetails extends React.PureComponent {
                                     onClick={() => {
                                         const url = 'https://neos.readthedocs.io/en/stable/References/NeosFusionReference.html#';
                                         // replace e.g. "Neos.Fusion:Array" with "neos-fusion-array"
-                                        const anchor = this.props.prototypeName.toLowerCase().replace(':', '-').replace('.', '-');
+                                        const anchor = this.props.prototypeName.toLowerCase().split(':').join('-').split('.').join('-');
                                         window.open(url + anchor);
                                     }}>
                                 Docs
