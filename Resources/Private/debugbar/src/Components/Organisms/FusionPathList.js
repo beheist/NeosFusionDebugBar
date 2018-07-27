@@ -23,6 +23,7 @@ class FusionPathList extends React.PureComponent {
     handleItemClick = (pathSegment, pathStack) => {
         const mergedPath = this.mergePath(pathSegment, pathStack);
         this.props.onItemClick(mergedPath);
+        console.log(mergedPath);
 
         if (this.hasChildren(pathStack.concat([pathSegment]), this.props.fusionPaths)) {
             // Open/Close logic
@@ -38,19 +39,22 @@ class FusionPathList extends React.PureComponent {
 
     isOpen = mergedPath => this.state.open.hasOwnProperty(mergedPath) && this.state.open[mergedPath];
 
-    mergePath = (pathSegment, pathStack) => pathStack.concat([pathSegment]).reverse().reduce((prev, cur) => prev + '.' + cur);
+    mergePath = (pathSegment, pathStack) => pathStack.concat([pathSegment]).reduce((prev, cur) => prev + '.' + cur);
 
     hasChildren = (pathStack, object) => this.getChildren(pathStack, object) !== null;
 
     getChildren = (pathStack, object) => {
-        console.log(pathStack);
-        console.log(object);
         const top = pathStack.shift();
-        if (typeof object !== 'object' || !object.hasOwnProperty(top) || Object.keys(object[top]).length === 0) {
+        if (typeof object !== 'object' ||
+            object === null ||
+            !object.hasOwnProperty(top) ||
+            typeof object[top] !== 'object' ||
+            object[top] === null ||
+            Object.keys(object[top]).length === 0) {
             return null;
         }
         if (pathStack.length > 0 && Object.keys(object[top]).length > 0) {
-            return this.hasChildren(pathStack, object[top]);
+            return this.getChildren(pathStack, object[top]);
         }
         return object[top];
     };
@@ -75,8 +79,11 @@ class FusionPathList extends React.PureComponent {
                         {this.hasChildren(pathStack.concat([pathSegment]), this.props.fusionPaths) ?
                             <Collapse in={this.state.open[this.mergePath(pathSegment, pathStack)]} timeout="auto"
                                       unmountOnExit>
-                                {/*{this.renderNestedList(this.getChildren(pathStack.concat([pathSegment]), this.props.fusionPaths), "div", pathSegments.slice(0, pathSegments.length - 1))}*/}
-                                <p>Foo</p>
+                                {this.renderNestedList(
+                                    this.getChildren(pathStack.concat([pathSegment]), this.props.fusionPaths),
+                                    "div",
+                                    pathStack.concat([pathSegment])
+                                )}
                             </Collapse> : null
                         }
                     </React.Fragment>
@@ -89,28 +96,6 @@ class FusionPathList extends React.PureComponent {
         return (
             <div className={this.props.classes.root}>
                 {this.renderNestedList(this.props.fusionPaths, "nav", [])}
-                {/*<List component="nav">*/}
-                {/*{Object.keys(this.props.fusionPaths).map(pathSegment => (*/}
-                {/*<React.Fragment key={pathSegment}>*/}
-                {/*<ListItem button onClick={() => this.handleItemClick(pathSegment)}>*/}
-                {/*<ListItemText primary={pathSegment}/>*/}
-                {/*{this.state.groupedFusionPaths[packageName].__isOpen ? <ExpandLess/> : <ExpandMore/>}*/}
-                {/*</ListItem>*/}
-                {/*<Collapse in={this.state.groupedFusionPaths[packageName].__isOpen} timeout="auto"*/}
-                {/*unmountOnExit>*/}
-                {/*<List component="div" disablePadding>*/}
-                {/*{Object.keys(this.state.groupedFusionPaths[packageName]).map(fusionPathName => (*/}
-                {/*fusionPathName != "__isOpen" ?*/}
-                {/*<ListItem button key={fusionPathName} className={this.props.classes.nested}*/}
-                {/*onClick={() => this.props.onItemClick(fusionPathName)}>*/}
-                {/*<ListItemText primary={fusionPathName}/>*/}
-                {/*</ListItem> : null*/}
-                {/*))}*/}
-                {/*</List>*/}
-                {/*</Collapse>*/}
-                {/*</React.Fragment>*/}
-                {/*))}*/}
-                {/*</List>*/}
             </div>
         );
     }

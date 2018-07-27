@@ -38,12 +38,12 @@ class App extends React.PureComponent {
             <div className={this.props.classes.root}>
                 <AppBar position="static">
                     <Tabs value={this.state.value} onChange={this.handleChange}>
-                        <Tab label="Fusion Prototypes"/>
                         <Tab label="Fusion Paths"/>
+                        <Tab label="Fusion Prototypes"/>
                     </Tabs>
                 </AppBar>
-                {this.state.value === 1 && <PrototypeView />}
                 {this.state.value === 0 && <FusionPathView />}
+                {this.state.value === 1 && <PrototypeView />}
             </div>
         );
     }
