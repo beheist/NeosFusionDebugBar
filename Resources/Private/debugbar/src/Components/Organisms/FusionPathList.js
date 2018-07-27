@@ -23,10 +23,9 @@ class FusionPathList extends React.PureComponent {
     handleItemClick = (pathSegment, pathStack) => {
         const mergedPath = this.mergePath(pathSegment, pathStack);
         this.props.onItemClick(mergedPath);
-        console.log(mergedPath);
 
+        // Open/Close logic
         if (this.hasChildren(pathStack.concat([pathSegment]), this.props.fusionPaths)) {
-            // Open/Close logic
             this.setState(state => ({
                 ...state,
                 open: {
@@ -50,7 +49,8 @@ class FusionPathList extends React.PureComponent {
             !object.hasOwnProperty(top) ||
             typeof object[top] !== 'object' ||
             object[top] === null ||
-            Object.keys(object[top]).length === 0) {
+            // Object.keys(object[top]).length === 0 ||
+            Object.keys(object[top]).filter(segment => segment.indexOf('__') !== 0).length === 0) {
             return null;
         }
         if (pathStack.length > 0 && Object.keys(object[top]).length > 0) {
@@ -60,10 +60,10 @@ class FusionPathList extends React.PureComponent {
     };
 
     renderNestedList = (pathSegments, component, pathStack) => {
+        const validSegments = Object.keys(pathSegments).filter(segment => segment.indexOf('__') !== 0);
         return (
-            // TODO Remove all paths with __
             <List component={component} disablePadding>
-                {Object.keys(pathSegments).map(pathSegment =>
+                {validSegments.map(pathSegment =>
                     <React.Fragment key={this.mergePath(pathSegment, pathStack)}>
                         <ListItem
                             button

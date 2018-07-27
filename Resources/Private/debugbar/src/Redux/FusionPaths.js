@@ -51,7 +51,7 @@ const currentFusionPathName = state => state.FusionPaths.currentFusionPathName;
 const currentFusionPath = createSelector(
     allFusionPaths,
     currentFusionPathName,
-    (all, current) => all[current]
+    (all, current) => current.split('.').reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, all)
 );
 
 //
