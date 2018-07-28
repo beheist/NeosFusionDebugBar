@@ -12,10 +12,12 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
-        height: 500,
         position: "absolute",
+        left: 0,
         bottom: 0,
-        width: "100vw"
+        width: "100vw",
+        overflow: "hidden",
+        height: 500 + 48 + 12// + 44
     },
 });
 

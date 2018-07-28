@@ -59,13 +59,17 @@ class FusionPathList extends React.PureComponent {
         return object[top];
     };
 
+    makeStyle = depth => ({background: '#' + (15 - depth).toString(16).repeat(6)});
+
     renderNestedList = (pathSegments, component, pathStack) => {
         const validSegments = Object.keys(pathSegments).filter(segment => segment.indexOf('__') !== 0);
+        const itemStyle = this.makeStyle(pathStack.length);
         return (
-            <List component={component} disablePadding>
+            <List component={component} disablePadding={pathStack.length > 0}>
                 {validSegments.map(pathSegment =>
                     <React.Fragment key={this.mergePath(pathSegment, pathStack)}>
                         <ListItem
+                            style={itemStyle}
                             button
                             onClick={() => this.handleItemClick(pathSegment, pathStack)}>
                             <ListItemText primary={pathSegment}/>

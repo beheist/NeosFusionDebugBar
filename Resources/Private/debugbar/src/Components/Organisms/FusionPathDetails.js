@@ -16,9 +16,9 @@ class FusionPathDetails extends React.PureComponent {
     renderAttributeList = (keys, object) => {
         return <ul>
             {keys.map(key => (
-                    <li key={key}><strong>{key}:</strong>
+                    <Typography component="li" variant="body1" key={key}><strong>{key}: </strong>
                         {typeof object[key] === 'object' && object[key] !== null ? this.renderAttributeList(Object.keys(object[key]), object[key]) : object[key]}
-                    </li>
+                    </Typography>
                 )
             )}
         </ul>

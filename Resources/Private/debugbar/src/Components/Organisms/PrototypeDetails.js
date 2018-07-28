@@ -14,6 +14,17 @@ class PrototypeDetails extends React.PureComponent {
         prototype: PropTypes.object.isRequired
     };
 
+    renderAttributeList = (keys, object) => {
+        return <ul>
+            {keys.map(key => (
+                    <Typography component="li" variant="body1" key={key}><strong>{key}: </strong>
+                        {typeof object[key] === 'object' && object[key] !== null ? this.renderAttributeList(Object.keys(object[key]), object[key]) : object[key]}
+                    </Typography>
+                )
+            )}
+        </ul>
+    };
+
     render() {
         return (
             <div className={this.props.classes.root}>
@@ -52,6 +63,8 @@ class PrototypeDetails extends React.PureComponent {
 
                     </React.Fragment> : null
                 }
+
+                {this.renderAttributeList(Object.keys(this.props.prototype).filter(key => key.indexOf('__') !== 0), this.props.prototype)}
 
             </div>
         );
